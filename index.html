@@ -1,46 +1,80 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>HTML Example</title>
-  
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/about.css">
-</head>
-<body>
-  <section class="center">
-    <aside class="sidebar"></aside>
-    
-    <section class="contents">
-      <!-- page will be include here -->
-      <section id="page" class="page">
-        <section id="about">
-          <section class="frame">
-            <h2><b>HELLO</b>WORLD</h2>
-            
-            <div class="cat">
-              <div class="picture">
-                <img src="images/mew.png" alt="Mew">
-              </div>
-              <small>Mew</small>
-            </div>
-            <div class="cat">
-              <div class="picture">
-                <img src="images/siesta.png" alt="Siesta">
-              </div>
-              <small>Siesta</small>
-            </div>
-            <div class="cat">
-              <div class="picture">
-                <img src="images/tiger.png" alt="Tiger">
-              </div>
-              <small>Tiger</small>
-            </div>
-          </section>
-        </section>
-      </section>
-    </section>
-  </section>
-</body>
+  <head>
+    <title>simple question</title>
+    <style>
+        form {
+          border: 2px solid #eee;
+          border-radius: 20px;
+          padding: 20px;
+          width: 400px;
+          margin: 0 auto;
+        }
+      </style>
+      
+  </head>
+  <body>
+    <form>
+      <h2>Q1. Why did you start dieting?</h2>
+      <label><input type="radio" name="q1" value="1">For health</label><br>
+      <label><input type="radio" name="q1" value="2">To get in shape</label><br>
+      <label><input type="radio" name="q1" value="3">Dieting is in trend</label><br>
+
+      <h2>Q2. What was hard during the diet?</h2>
+      <label><input type="radio" name="q2" value="1">Dietary restrictions</label><br>
+      <label><input type="radio" name="q2" value="2">The burden of exercising</label><br>
+      <label><input type="radio" name="q2" value="3">No snacks</label><br>
+
+      <h2>Q3. What do you want to achieve while dieting?</h2>
+      <label><input type="radio" name="q3" value="1">Weight loss</label><br>
+      <label><input type="radio" name="q3" value="2">Improvement in physical strength</label><br>
+      <label><input type="radio" name="q3" value="3">Stay healthy</label><br>
+
+      <input type="submit" value="제출">
+    </form>
+
+    <script>
+      const form = document.querySelector('form');
+      const submitButton = form.querySelector('input[type="submit"]');
+      const questions = [
+        "Q1. Why did you start dieting?",
+        "Q2. Are you exercising more than usual?",
+        "Q3. Do you check weight crabs a lot?"
+      ];
+      let currentQuestion = 0;
+
+      const showPleaseWaitMessage = () => {
+        form.innerHTML = '<h2>Please wait a moment...</h2>';
+      };
+
+      const showNextQuestion = () => {
+    form.innerHTML = `
+        <h2>${questions[currentQuestion]}</h2>
+        <label><input type="radio" name="q${currentQuestion + 1}" value="1"Yes</label><br>
+        <label><input type="radio" name="q${currentQuestion + 1}" value="2">No</label><br>
+        <br>
+        <input type="submit" value="submit">
+    `;
+};
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const answer = form.elements[`q${currentQuestion + 1}`].value;
+        if (answer) {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            showNextQuestion();
+        } else {
+            showPleaseWaitMessage();
+            setTimeout(() => {
+            location.href = "https://262e4axb6ms0eo66pfx5tzrw06.hop.clickbank.net";
+            }, 3000);
+        }
+        } else {
+        alert(`Please answer question ${currentQuestion + 1}`);
+        }
+    });
+    </script>
+  </body>
 </html>
+
